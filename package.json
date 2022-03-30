@@ -1,0 +1,14 @@
+{
+  "name": "oen.web.vue",
+  "version": "1.0.0",
+  "description": "Mono repository containing shared vue packages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sonar": "sonar-scanner"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {}
+}
