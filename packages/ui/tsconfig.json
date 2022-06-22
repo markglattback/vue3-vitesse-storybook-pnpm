@@ -4,6 +4,7 @@
     "module": "ESNext",
     "target": "es2016",
     "lib": ["DOM", "ESNext"],
+    "jsx": "preserve",
     "strict": true,
     "esModuleInterop": true,
     "incremental": false,
@@ -13,13 +14,12 @@
     "noUnusedLocals": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "vite/client",
-      "vite-plugin-pages/client"
-    ],
+    "types": ["vite/client"],
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["src/*"],
+      "react": ["shim"]
     }
   },
+  "includes": ["components.d.ts"],
   "exclude": ["dist", "node_modules"]
 }
