@@ -5,6 +5,8 @@ const IconsResolver = require('unplugin-icons/resolver')
 const path = require('path')
 
 module.exports = ({ config }) => {
+  console.log('using custom webpack config')
+
   config.resolve.alias = {
     ...config.resolve.alias,
     '~/': path.resolve(__dirname, '../src/'),

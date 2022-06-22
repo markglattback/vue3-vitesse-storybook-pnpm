@@ -1,14 +1,26 @@
-import '../src/styles/main.css'
+import vueRouter from 'storybook-vue3-router'
 import resolveConfig from 'tailwindcss/resolveConfig'
+import { routes } from './mocks/routes'
 import theme from './theme.js'
 import customConfig from '../tailwind.config.js'
 const config = resolveConfig(customConfig)
+import AppApp from '../src/components/AppApp/AppApp.vue'
+import '../src/styles/main.css'
+export const decorators = [
+  (story) => ({
+    components: { story, AppApp },
+    template: `<AppApp><story/></AppApp>`,
+  }),
+  vueRouter(routes, { initialRoute: routes[0].name }),
+]
+
 export const parameters = {
   backgrounds: {
     default: 'light',
     values: [
       { name: 'light', value: '#ffffff' },
       { name: 'dark', value: '#001133' },
+      { name: 'gray', value: config.theme.colors.zinc[100] },
     ],
   },
   docs: {
@@ -16,27 +28,29 @@ export const parameters = {
   },
   controls: { expanded: true },
   actions: { argTypesRegex: '^on[A-Z].*' },
-  status: 'wip',
-  statuses: {
-    stable: {
-      color: config.theme.colors.green.default,
-      description: 'Matches figma design and approved',
-    },
-    'stable-with-notes': {
-      color: config.theme.colors.blue.default,
-      description: 'Missing some functionality of there are some caveats',
-    },
-    'stable-pending-test': {
-      color: config.theme.colors.purple.default,
-      default: 'Stable but pending some testing',
-    },
-    beta: {
-      color: config.theme.colors.orange.default,
-      description: 'For approval',
-    },
-    wip: {
-      color: config.theme.colors.red.default,
-      description: 'The default status, for new Work in Progress components',
+  status: {
+    type: 'wip',
+    statuses: {
+      stable: {
+        background: config.theme.colors.green.default,
+        description: 'Matches figma design and approved',
+      },
+      'stable-with-notes': {
+        background: config.theme.colors.blue.default,
+        description: 'Missing some functionality of there are some caveats',
+      },
+      'stable-pending-test': {
+        background: config.theme.colors.purple.default,
+        default: 'Stable but pending some testing',
+      },
+      beta: {
+        background: config.theme.colors.orange.default,
+        description: 'For approval',
+      },
+      wip: {
+        background: config.theme.colors.red.default,
+        description: 'The default status, for new Work in Progress components',
+      },
     },
   },
   viewport: {

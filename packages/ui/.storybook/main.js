@@ -1,9 +1,9 @@
 module.exports = {
-  'stories': [
-    '../src/**/*.stories.mdx',
-    '../src/**/*.stories.@(js|jsx|ts|tsx)'
-  ],
-  'addons': [
+  core: {
+    builder: 'webpack5',
+  },
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-links',
     '@storybook/addon-a11y',
@@ -14,9 +14,18 @@ module.exports = {
       options: {
         postcssLoaderOptions: {
           implementation: require('postcss'),
+          postcssOptions: {
+            plugins: [
+              require('tailwindcss/nesting')(),
+              require('tailwindcss')(),
+              require('autoprefixer')(),
+            ],
+          },
         },
+        cssLoaderOptions: { importLoaders: 1 },
       },
     },
   ],
-  'framework': '@storybook/vue3',
+  framework: '@storybook/vue3',
+  staticDirs: ['../public'],
 }

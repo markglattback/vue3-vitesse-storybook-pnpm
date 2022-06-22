@@ -27,7 +27,7 @@ const events = {
 </script>
 
 <template>
-  <button class="wrapper flex items-center bg-blue-500 text-white rounded border-none" :type="type" v-on="events" >
+  <button class="wrapper flex items-center bg-blue-500 px-4 py-2 text-white font-bold rounded border-none" :type="type" v-on="events" >
     <slot />
   </button>
 </template>
